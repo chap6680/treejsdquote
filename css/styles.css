@@ -11,6 +11,7 @@ body {
   right: 10%;
   width: 80%;
   line-height: .5;
+  
 }
 .quote {
   font-size: 4rem;
@@ -18,7 +19,23 @@ body {
   line-height: 1.1;
   position: relative;
   margin: 0;
-  } 
+  animation-duration: 1s;
+  animation-name: slidein;
+
+} 
+
+  @keyframes slidein {
+	from {
+	  margin-left: 100%;
+	  width: 300%; 
+	}
+  
+	to {
+	  margin-left: 10%;
+	  width: 80%;
+	}
+  }
+
 .quote:before, .quote:after {
   font-size: 6rem;
   line-height: 2.5rem;
@@ -58,12 +75,15 @@ body {
 }
 
 #loadQuote {
-  position: fixed;
+/*   position: fixed; */
+display:flex;
+align-items:center;
+justify-content: center;
   width: 12em;
-  display: inline-block;
   left: 50%;
-  margin-left: -6em;
-  bottom: 150px;
+/*   margin-left: -6em;
+ */
+   bottom: 150px;
   border-radius: 4px;
   border: 2px solid #fff;
   color: #fff;
