@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Random Quotes</title>
   <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -13,9 +14,24 @@
       <p class="quote">You can do anything but not everything</p>
       <p class="source">David Allen<span class="citation">Making It All Work</span><span class="year">2009</span></p>
 	  <div><button id="loadQuote">Show another quote</button></div>
-
+	  
 	</div>
+  </div>	
+	<div id="tagcheckbox">
+		<br><br>	
+		<input type="checkbox" id="book" name="book" value="book" checked>
+		<label for="book">book</label>
+		<input type="checkbox" id="sequel" name="sequel" value="sequel" checked>
+		<label for="sequel">sequel</label>
+		<input type="checkbox" id="speech" name="speech" value="speech" checked>
+		<label for="speech">speech</label>
+		<input type="checkbox" id="presidental" name="presidental" value="presidental" checked>
+		<label for="presidental">presidental</label>
 
+<!-- 			<ul class="tags"> 					
+					<li><a href="#">tag<i class="fas fa-plus"></i></a></li>
+					<li><a href="#">tag name</a></li>
+				</ul> -->
 </div>
 
   <script src="js/script.js"></script>
