@@ -136,7 +136,6 @@ function printQuote() {
 	document.getElementById('quote-box').getElementsByClassName('quote')[0].innerHTML = setQuote;
 	document.getElementById('quote-box').getElementsByClassName('source')[0].innerHTML = setInfo
 	document.body.style.backgroundColor = random_bg_color();
-/* 	validatecb();  REMOVE  */
 }
 
 /* getRandomQuote function - 
