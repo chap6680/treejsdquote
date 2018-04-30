@@ -108,35 +108,19 @@ let quoteSet = [
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-/* Main function called - first gets the quote from another function.
+/* Main function printQuote is called - 
+	-creates two variables to take to the screen.  quote and citation/source/year
+	first gets the quote from another function.
 then this function displays in the DOM - the quote and changes the background color
 */
 function printQuote() { 
-	getRandomQuote();
-	document.getElementById('quote-box').getElementsByClassName('quote')[0].innerHTML = setQuote;
-	document.getElementById('quote-box').getElementsByClassName('source')[0].innerHTML = setInfo
-	document.body.style.backgroundColor = random_bg_color();
-/* 	validatecb();  REMOVE  */
-}
-
-/* Workhorse function - 
-	-First looks at the selected tabs - and filters the entire quote list down to just the tabs selected.
-	-Gets random number based on quotes selected, and sets fields to temp variables
-	-creates two variables to take to the screen.  quote and citation/source/year
- */
-function getRandomQuote() {
-	quotesBySelectedTab(); 
- 	console.log(quotes); 
-	let totalNumberQuotes = quotes.length;
-	
-	let selectQuoteNum = getRandomInt(totalNumberQuotes);
-	
-	let selectQuoteSource = quotes[selectQuoteNum].source;
-	let selectQuoteCitation = quotes[selectQuoteNum].citation;
-	let selectQuoteYear = quotes[selectQuoteNum].year;
+	let getRandomQuoteObj = getRandomQuote();
+	let selectQuoteSource = getRandomQuoteObj.source;
+	let selectQuoteCitation = getRandomQuoteObj.citation;
+	let selectQuoteYear = getRandomQuoteObj.year;
 
 	// Main Quote
-	setQuote = quotes[selectQuoteNum].quote;
+	setQuote = getRandomQuoteObj.quote;
 
 	// Puts the source/author on new variable
 	setInfo = selectQuoteSource;
@@ -148,6 +132,28 @@ function getRandomQuote() {
 	if (!(selectQuoteYear === 0 || selectQuoteYear == '' || selectQuoteYear === undefined || selectQuoteYear == null || selectQuoteYear.length <= 0)) { 
 		setInfo = setInfo + '<span class="year">' + selectQuoteYear + '</span>';
 	}
+
+	document.getElementById('quote-box').getElementsByClassName('quote')[0].innerHTML = setQuote;
+	document.getElementById('quote-box').getElementsByClassName('source')[0].innerHTML = setInfo
+	document.body.style.backgroundColor = random_bg_color();
+/* 	validatecb();  REMOVE  */
+}
+
+/* getRandomQuote function - 
+	-First looks at the selected tabs (quotesBySelectedTab function)- and filters the entire quote list down to just the tabs selected.
+	-gets random # based on filtered list
+	-sends obj back to printQuote
+ */
+function getRandomQuote() {
+	quotesBySelectedTab(); 
+	//get total number of filtered quotes
+	let totalNumberQuotes = quotes.length;
+	//get random number
+	let selectQuoteNum = getRandomInt(totalNumberQuotes);
+	//return obj back to printQuote
+	let tempQ = quotes[selectQuoteNum];
+	return tempQ;
+
 }	
 
 /* Master Tag list - this  */
@@ -160,7 +166,6 @@ bookCheckouts = bookCheckouts.reduce((a, b) => a.concat(b), []);
 /* FILTER OUT DUPS */
 bookCheckouts = bookCheckouts.filter(function (v, i) { return bookCheckouts.indexOf(v) == i; });
 
-console.log(bookCheckouts);
 
 /* Filtering quotes array
 This function first gets which checkboxes were selected - creates an array. 
@@ -169,12 +174,9 @@ Then it takes the quote Array and filters it - keeping those quotes that have ta
 */
 function quotesBySelectedTab() { 
 	let resultcb = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
-	console.log('resultagfilter:');
-	console.log(resultcb);
 	let filterByTags = resultcb.map(el => el.value);
 	let filterByTagMaps = filterByTags.reduce((map, tag) => map.set(tag, true), new Map());
 	let resulttagfilter = quoteSet.filter((o) => o.tags.some((tag) => filterByTagMaps.get(tag)));
-	console.log(resulttagfilter);
 	return quotes = resulttagfilter;
 };
 
@@ -202,5 +204,5 @@ function random_bg_color() {
 
 //this will change the quote automatically.  Time is 3 seconds - not production
 //time but allows for testing 
-let autoQuote = setInterval(function () { printQuote() }, 3000);
+let autoQuote = setInterval(function () { printQuote() }, 5000);
 
