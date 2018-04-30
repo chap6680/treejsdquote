@@ -11,8 +11,7 @@ body {
   left: 10%;
   right: 10%;
   width: 80%;
-  line-height: .5;
-  
+  line-height: .5; 
 }
 .quote {
   font-size: 4rem;
@@ -88,7 +87,7 @@ justify-content: center;
   border-radius: 4px;
   border: 2px solid #fff;
   color: #fff;
-  background-color: #36b55c;
+  background-color: black;
   padding: 15px 0;
   transition: .5s ;
 }
@@ -98,6 +97,12 @@ justify-content: center;
 #loadQuote:focus {
   outline: none;
 }
+
+#tagcheckbox {
+	position:relative;
+	top: 50%;
+}
+
 .tags{
 	margin:0;
 	padding:0;
