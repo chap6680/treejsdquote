@@ -195,11 +195,7 @@ function random_bg_color() {
 	return "rgb(" + x + "," + y + "," + z + ")";
 }
 
-//remove if works
-/* function removeTag(array, element) {
-    return array.filter(e => e !== element);
-}
- */
+
 
 //this will change the quote automatically.  Time is 3 seconds - not production
 //time but allows for testing 
